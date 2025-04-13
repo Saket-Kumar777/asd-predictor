@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ASD Predictor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #34495e;
+            font-weight: 500;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #b2bec3;
+            border-radius: 6px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            outline: none;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>ASD Prediction Tool</h1>
+        <form method="POST">
+            <label>Age: <input type="number" name="age" required></label>
+
+            <label>Gender: 
+                <select name="gender">
+                    <option value="m">m</option>
+                    <option value="f">f</option>
+                </select>
+            </label>
+
+            <label>Ethnicity: <input type="text" name="ethnicity"></label>
+            <label>Jaundice: <input type="text" name="jaundice"></label>
+            <label>Autism in Family: <input type="text" name="autism"></label>
+            <label>Country: <input type="text" name="contry_of_res"></label>
+            <label>Used App Before: <input type="text" name="used_app_before"></label>
+            <label>Relation: <input type="text" name="relation"></label>
+            <label>Result: <input type="number" name="result" required></label>
+
+            {% for i in range(1, 11) %}
+                <label>A{{ i }}_Score (yes/no): 
+                    <input type="text" name="A{{ i }}_Score">
+                </label>
+            {% endfor %}
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction is not none %}
+            <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
