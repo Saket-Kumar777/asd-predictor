@@ -1,102 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>ASD Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f4f8;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
         }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            font-size: 28px;
         }
-        form {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-        }
+
         label {
+            font-weight: 600;
+            color: #2d3436;
             display: block;
-            margin-bottom: 10px;
-            color: #34495e;
-            font-weight: 500;
+            margin-bottom: 8px;
         }
+
         input[type="text"],
         input[type="number"],
         select {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #b2bec3;
+            padding: 10px 14px;
+            margin-bottom: 20px;
+            border: 1px solid #dcdde1;
             border-radius: 6px;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 15px;
+            transition: 0.3s ease;
         }
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        select:focus {
+
+        input:focus, select:focus {
             border-color: #3498db;
-            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
             outline: none;
         }
+
         input[type="submit"] {
             width: 100%;
-            padding: 12px;
-            background-color: #3498db;
+            background: #0984e3;
             color: white;
+            font-size: 16px;
+            padding: 12px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
+
         input[type="submit"]:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
+            background: #0652dd;
         }
+
         h2 {
             text-align: center;
+            margin-top: 25px;
             color: #2c3e50;
-            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            } to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>ASD Prediction Tool</h1>
+    <div class="container">
+        <h1>Autism Spectrum Disorder Prediction</h1>
         <form method="POST">
-            <label>Age: <input type="number" name="age" required></label>
+            <label>Age</label>
+            <input type="number" name="age" required>
 
-            <label>Gender: 
-                <select name="gender">
-                    <option value="m">m</option>
-                    <option value="f">f</option>
-                </select>
-            </label>
+            <label>Gender</label>
+            <select name="gender">
+                <option value="m">Male</option>
+                <option value="f">Female</option>
+            </select>
 
-            <label>Ethnicity: <input type="text" name="ethnicity"></label>
-            <label>Jaundice: <input type="text" name="jaundice"></label>
-            <label>Autism in Family: <input type="text" name="autism"></label>
-            <label>Country: <input type="text" name="contry_of_res"></label>
-            <label>Used App Before: <input type="text" name="used_app_before"></label>
-            <label>Relation: <input type="text" name="relation"></label>
-            <label>Result: <input type="number" name="result" required></label>
+            <label>Ethnicity</label>
+            <input type="text" name="ethnicity">
+
+            <label>Jaundice</label>
+            <input type="text" name="jaundice">
+
+            <label>Autism in Family</label>
+            <input type="text" name="autism">
+
+            <label>Country</label>
+            <input type="text" name="contry_of_res">
+
+            <label>Used App Before</label>
+            <input type="text" name="used_app_before">
+
+            <label>Relation</label>
+            <input type="text" name="relation">
+
+            <label>Result</label>
+            <input type="number" name="result" required>
 
             {% for i in range(1, 11) %}
-                <label>A{{ i }}_Score (yes/no): 
-                    <input type="text" name="A{{ i }}_Score">
-                </label>
+                <label>A{{ i }}_Score (yes/no)</label>
+                <input type="text" name="A{{ i }}_Score">
             {% endfor %}
 
             <input type="submit" value="Predict">
