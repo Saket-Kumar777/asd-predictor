@@ -68,12 +68,3 @@ asd_app/
 ## Dataset
 
 The model was trained on a dataset containing features such as age, gender, ethnicity, and responses to a series of questions. The dataset was preprocessed to handle missing values, outliers, and class imbalances.
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-## Acknowledgments
-
-- The dataset used for training the model.
-- Libraries and frameworks that made this project possible.
